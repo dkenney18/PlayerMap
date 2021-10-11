@@ -25,6 +25,7 @@ namespace PlayerMap
 
         public void Move(WorldMap map, Cell[,] cells)
         {
+            var ans = "";
             do
             {
                 ans = Console.Read().ToString().Trim().ToLower();
