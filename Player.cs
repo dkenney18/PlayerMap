@@ -33,19 +33,19 @@ namespace PlayerMap
                 switch (ans)
                 {
                     case "119":
-                        MoveUp(cells);
+                        MoveUp(cells, map);
                         break;
 
                     case "115":
-                        MoveDown(cells);
+                        MoveDown(cells, map);
                         break;
 
                     case "97":
-                        MoveLeft(cells);
+                        MoveLeft(cells, map);
                         break;
 
                     case "100":
-                        MoveRight(cells);
+                        MoveRight(cells, map);
                         break;
 
                     case "109":
@@ -74,36 +74,79 @@ namespace PlayerMap
         private void Mine(Cell[,] cells)
         {
             var item = cells[x, y].prev_space;
-            backpack.Add(item);
-            cells[x, y].ChangeSpace(" ");
+
+            if (!item.ToString().Equals(" "))
+            {
+                backpack.Add(item);
+            }
+
+            cells[x, y].ChangeSpace(player_token);
             cells[x, y].prev_space = " ";
         }
 
-        public void MoveUp(Cell[,] cells)
+        public void MoveUp(Cell[,] cells, WorldMap map)
         {
-            cells[x, y].RevertSpace();
+            var i = CalulateXAndY(x, y, map).X;
+            var j = CalulateXAndY(x, y, map).Y;
+
+            cells[i, j].RevertSpace();
+
             x -= 1;
-            cells[x, y].ChangeSpace(player_token);
-        }
-        public void MoveDown(Cell[,] cells)
-        {
-            cells[x, y].RevertSpace();
-            x += 1;
-            cells[x, y].ChangeSpace(player_token);
-        }
-        public void MoveLeft(Cell[,] cells)
-        {
-            cells[x, y].RevertSpace();
-            y -= 1;
-            cells[x, y].ChangeSpace(player_token);
-        }
-        public void MoveRight(Cell[,] cells)
-        {
-            cells[x, y].RevertSpace();
-            y += 1;
-            cells[x, y].ChangeSpace(player_token);
+
+            i = CalulateXAndY(x, y, map).X;
+
+            cells[i, j].ChangeSpace(player_token);
         }
 
+        public void MoveDown(Cell[,] cells, WorldMap map)
+        {
+
+            var i = CalulateXAndY(x, y, map).X;
+            var j = CalulateXAndY(x, y, map).Y;
+
+            cells[i, j].RevertSpace();
+
+            x += 1;
+
+            i = CalulateXAndY(x, y, map).X;
+
+            cells[i, j].ChangeSpace(player_token);
+        }
+
+        public void MoveLeft(Cell[,] cells, WorldMap map)
+        {
+            var i = CalulateXAndY(x, y, map).X;
+            var j = CalulateXAndY(x, y, map).Y;
+
+            cells[i, j].RevertSpace();
+
+            y -= 1;
+
+            j = CalulateXAndY(x, y, map).Y;
+
+            cells[i, j].ChangeSpace(player_token);
+        }
+
+        public void MoveRight(Cell[,] cells, WorldMap map)
+        {
+            var i = CalulateXAndY(x, y, map).X;
+            var j = CalulateXAndY(x, y, map).Y;
+
+            cells[i, j].RevertSpace();
+
+            y += 1;
+
+            j = CalulateXAndY(x, y, map).Y;
+
+            cells[i, j].ChangeSpace(player_token);
+        }
+
+        private Points CalulateXAndY(int x, int y, WorldMap map)
+        {
+            var i = x - (int)((map.max_width * Math.Floor((double)x / map.max_width)));
+            var j = y - (int)((map.max_height * Math.Floor((double)y / map.max_height)));
+            return new Points() { X = i, Y = j };
+        }
 
     }
 }
