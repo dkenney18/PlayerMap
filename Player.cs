@@ -3,12 +3,12 @@ using System.Collections.Generic;
 
 namespace PlayerMap
 {
-    class Player
+    public class Player
     {
-        private int x;
-        private int y;
-        private readonly string player_token;
-        private readonly List<string> backpack = new List<string>();
+        public int x;
+        public int y;
+        public string player_token;
+        public List<string> backpack = new List<string>();
 
         public Player(string p_token) { player_token = p_token; }
 
@@ -16,11 +16,6 @@ namespace PlayerMap
         {
             x = center_x;
             y = center_x;
-        }
-
-        public string GetPlayerToken()
-        {
-            return player_token;
         }
 
         public void Move(WorldMap map, Cell[,] cells)
@@ -71,7 +66,7 @@ namespace PlayerMap
             }
         }
 
-        private void Mine(Cell[,] cells)
+        public void Mine(Cell[,] cells)
         {
             var item = cells[x, y].prev_space;
 
@@ -141,7 +136,7 @@ namespace PlayerMap
             cells[i, j].ChangeSpace(player_token);
         }
 
-        private Points CalulateXAndY(int x, int y, WorldMap map)
+        public Points CalulateXAndY(int x, int y, WorldMap map)
         {
             var i = x - (int)((map.max_width * Math.Floor((double)x / map.max_width)));
             var j = y - (int)((map.max_height * Math.Floor((double)y / map.max_height)));
