@@ -1,7 +1,7 @@
 ﻿using System;
 namespace PlayerMap
 {
-    public class Points : Location
+    public class Points : ILocation
     {
         public Points()
         {

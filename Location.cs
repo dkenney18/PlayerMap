@@ -1,7 +1,7 @@
 ﻿using System;
 namespace PlayerMap
 {
-    public interface Location
+    public interface ILocation
     {
         int X { get; set; }
         int Y { get; set; }

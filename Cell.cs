@@ -5,7 +5,7 @@ namespace PlayerMap
 {
     public class Cell
     {
-        private string space;
+        public string space;
         public string prev_space;
         private static readonly Random random = new();
         public Cell()

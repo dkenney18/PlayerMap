@@ -3,19 +3,19 @@ using System.Collections.Generic;
 
 namespace PlayerMap
 {
-    class Player
+    public class Player
     {
-        private int x;
-        private int y;
-        private readonly string player_token;
-        private readonly List<string> backpack = new List<string>();
+        public int x;
+        public int y;
+        public string player_token;
+        public readonly List<string> backpack = new List<string>();
 
         public Player(string p_token) { player_token = p_token; }
 
         public void SetCenter(int center_x, int center_y)
         {
             x = center_x;
-            y = center_x;
+            y = center_y;
         }
 
         public string GetPlayerToken()
@@ -32,22 +32,27 @@ namespace PlayerMap
 
                 switch (ans)
                 {
+                    // w
                     case "119":
                         MoveUp(cells, map);
                         break;
 
+                    // s
                     case "115":
                         MoveDown(cells, map);
                         break;
 
+                    // a
                     case "97":
                         MoveLeft(cells, map);
                         break;
 
+                    // d
                     case "100":
                         MoveRight(cells, map);
                         break;
 
+                    // m
                     case "109":
                         Mine(cells);
                         break;
@@ -58,6 +63,7 @@ namespace PlayerMap
 
                 map.Draw();
 
+                // 113 = "q"
             } while (ans != "113");
 
             PrintBackpack();
@@ -71,7 +77,7 @@ namespace PlayerMap
             }
         }
 
-        private void Mine(Cell[,] cells)
+        public void Mine(Cell[,] cells)
         {
             var item = cells[x, y].prev_space;
 
@@ -141,7 +147,7 @@ namespace PlayerMap
             cells[i, j].ChangeSpace(player_token);
         }
 
-        private Points CalulateXAndY(int x, int y, WorldMap map)
+        public static Points CalulateXAndY(int x, int y, WorldMap map)
         {
             var i = x - (int)((map.max_width * Math.Floor((double)x / map.max_width)));
             var j = y - (int)((map.max_height * Math.Floor((double)y / map.max_height)));
