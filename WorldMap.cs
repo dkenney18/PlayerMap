@@ -2,7 +2,7 @@
 
 namespace PlayerMap
 {
-    public class WorldMap
+    class WorldMap
     {
         public int max_width;
         public int max_height;
@@ -33,7 +33,7 @@ namespace PlayerMap
 
             player.SetCenter(mid_x, mid_y);
 
-            cells[mid_x, mid_y].ChangeSpace(player.player_token);
+            cells[mid_x, mid_y].ChangeSpace(player.GetPlayerToken());
         }
 
         public void Draw()
