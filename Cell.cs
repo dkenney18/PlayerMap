@@ -30,14 +30,8 @@ namespace PlayerMap
         }
         public static string RandomString(int length)
         {
-            // S = stone
-            // I = iron
-            // G = gold
-            // E = emaerald
-            // D = diamond
-            const string chars = "SGIDE";
-            return new string(Enumerable.Repeat(chars, length)
-              .Select(s => s[random.Next(s.Length)]).ToArray());
+            string[] chars = Enum.GetNames(typeof(Blocks));
+            return chars[random.Next(chars.Length)].Substring(0,2);
         }
     }
 }

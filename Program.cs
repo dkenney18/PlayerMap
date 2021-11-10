@@ -2,16 +2,15 @@
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
-            Player player = new Player("#");
-            WorldMap map = new WorldMap(10, 10, player);
+            WorldMap map = new(10, 10);
 
             map.GenerateMap();
             map.Draw();
 
-            player.Move(map, map.cells);
-
+            //starts the Console interface
+            WorldMap.player.Move(map, map.cells);
         }
     }
 }

@@ -1,0 +1,7 @@
+﻿Add Shop to buy items
+Add Armor
+Add Potions
+Add Skils
+Add Alchmey 
+Add Recipes For food
+Add Automation for Mining, Forging, and Combat
