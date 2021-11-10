@@ -2,7 +2,7 @@
 
 namespace SimpleAdventureGame
 {
-    class NPC : Player
+    internal class NPC : Player
     {
         public NPC(string npc_token, string name, int startingCoins) : base(npc_token, name, startingCoins)
         {

@@ -1,8 +1,6 @@
-﻿using System;
-
-namespace SimpleAdventureGame
+﻿namespace SimpleAdventureGame
 {
-    class Weapon : Item
+    internal class Weapon : Item
     {
         public bool canDualWield = false;
 
@@ -12,7 +10,7 @@ namespace SimpleAdventureGame
             this.value = value;
             this.amount = amount;
             this.damage = damage;
-            this.tag = ItemTag.Weapon;
+            tag = ItemTag.Weapon;
         }
     }
 }

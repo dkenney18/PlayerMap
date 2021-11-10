@@ -15,7 +15,7 @@ namespace SimpleAdventureGame
             this.value = value;
             this.amount = amount;
             this.damage = damage;
-            this.tag = ItemTag.Item;
+            tag = ItemTag.Item;
         }
 
         public Item() { }

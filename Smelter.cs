@@ -1,27 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using PlayerMap;
 
 namespace SimpleAdventureGame
 {
-   public  class Smelter
+    public class Smelter
     {
         public Smelting_Recipes Recipes;
 
-        public Smelter(Smelting_Recipes Recipes) 
+        public Smelter(Smelting_Recipes Recipes)
         {
             this.Recipes = Recipes;
         }
 
         public void Smelt(Item ore, Player player, int amountToCraft)
         {
-            var returnedIem = new Item();
+            Item returnedIem = new Item();
             foreach (KeyValuePair<ItemName, Item> recipes in Recipes.Instance())
             {
-                if (recipes.Key.Equals(ore.name) && ore.amount <= amountToCraft) 
+                if (recipes.Key.Equals(ore.name) && ore.amount <= amountToCraft)
                 {
                     returnedIem = recipes.Value;
                     ore.amount -= amountToCraft;

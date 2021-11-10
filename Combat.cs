@@ -1,12 +1,11 @@
-﻿using System;
-using PlayerMap;
+﻿using PlayerMap;
 
 namespace SimpleAdventureGame
 {
     public class Combat
     {
-        public  Player player;
-        public  Monster monster;
+        public Player player;
+        public Monster monster;
 
         public Combat(Player player, Monster monster)
         {

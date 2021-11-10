@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace SimpleAdventureGame
 {
-    class Backpack
+    internal class Backpack
     {
         public List<Item> items = new();
 
@@ -13,12 +13,12 @@ namespace SimpleAdventureGame
             {
                 items[items.IndexOf(item)].amount += addamount;
             }
-            else 
+            else
             {
                 item.amount = addamount;
                 items.Add(item);
             }
-           
+
         }
 
         public bool RemoveItemFromBackpack(Item item)
@@ -38,7 +38,7 @@ namespace SimpleAdventureGame
 
         public int CurrentValueOfBackpack()
         {
-            var currentValue = 0;
+            int currentValue = 0;
             items.ForEach(item => currentValue += (item.value * item.amount));
             return currentValue;
         }

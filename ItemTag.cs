@@ -1,6 +1,6 @@
 ﻿namespace SimpleAdventureGame
 {
-    public enum ItemTag 
+    public enum ItemTag
     {
         Food,
         Ingot,

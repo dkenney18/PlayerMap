@@ -1,9 +1,6 @@
-﻿using System;
-
-
-namespace SimpleAdventureGame
+﻿namespace SimpleAdventureGame
 {
-    class Ore : Item
+    internal class Ore : Item
     {
         public Ore(ItemName name, int value, int damage, int amount)
         {
@@ -11,7 +8,7 @@ namespace SimpleAdventureGame
             this.value = value;
             this.amount = amount;
             this.damage = damage;
-            this.tag = ItemTag.Ore;
+            tag = ItemTag.Ore;
         }
     }
 }

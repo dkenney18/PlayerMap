@@ -24,7 +24,7 @@ namespace PlayerMap
 
         public Wander wander = new(registry);
 
-        public static Player player = new("#","Devin", 1000000);
+        public static Player player = new("#", "Devin", 1000000);
 
         public SmelterInterface smelterInterface = new SmelterInterface(smelter, player);
 

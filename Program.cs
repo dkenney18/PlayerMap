@@ -1,8 +1,8 @@
 ﻿namespace PlayerMap
 {
-    class Program
+    internal class Program
     {
-        static void Main()
+        private static void Main()
         {
             WorldMap map = new(10, 10);
 

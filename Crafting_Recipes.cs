@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace SimpleAdventureGame
 {
-     public class Crafting_Recipes
+    public class Crafting_Recipes
     {
         private readonly Dictionary<List<ItemName>, Item> Recipes;
 
-        public  Crafting_Recipes()
+        public Crafting_Recipes()
         {
             Recipes = new Dictionary<List<ItemName>, Item>();
         }

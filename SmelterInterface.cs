@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using SimpleAdventureGame;
 
 namespace PlayerMap
@@ -11,24 +9,26 @@ namespace PlayerMap
     {
         public Smelter smelter;
         public Player player;
-        private Dictionary<int, Dictionary<ItemName, Item>> smelterOptions = new Dictionary<int, Dictionary<ItemName, Item>>();
+        private readonly Dictionary<int, Dictionary<ItemName, Item>> smelterOptions = new Dictionary<int, Dictionary<ItemName, Item>>();
         public SmelterInterface(Smelter smelter, Player Player)
         {
             this.smelter = smelter;
-            this.player = Player;
+            player = Player;
         }
 
         public void CreateSmelterOptions()
         {
-            var count = 1;
+            int count = 1;
             foreach (KeyValuePair<ItemName, Item> recipes in smelter.Recipes.Instance())
             {
                 if (CanISmelt(recipes.Key))
                 {
                     try
                     {
-                        var tempdic = new Dictionary<ItemName, Item>();
-                        tempdic.Add(recipes.Key, recipes.Value);
+                        Dictionary<ItemName, Item> tempdic = new Dictionary<ItemName, Item>
+                        {
+                            { recipes.Key, recipes.Value }
+                        };
                         smelterOptions.Add(count, tempdic);
                         count++;
                     }
@@ -61,12 +61,11 @@ namespace PlayerMap
                 //smelt the right option
                 foreach (KeyValuePair<int, Dictionary<ItemName, Item>> smeltable in smelterOptions)
                 {
-                    int number;
-                    bool res = int.TryParse(ans, out number);
-                    var result = char.ConvertFromUtf32(number);
+                    bool res = int.TryParse(ans, out int number);
+                    string result = char.ConvertFromUtf32(number);
                     if (result == smeltable.Key.ToString())
                     {
-                        var item = player.GetItemByName(smeltable.Value.Keys.First());
+                        Item item = player.GetItemByName(smeltable.Value.Keys.First());
                         smelter.Smelt(item, player, 1);
                     }
                 }
@@ -74,7 +73,7 @@ namespace PlayerMap
                 Console.Clear();
 
                 //113 = q for quit
-            } while (ans != "113" );
+            } while (ans != "113");
         }
 
         public bool CanISmelt(ItemName oreName)

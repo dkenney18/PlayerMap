@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 
 namespace PlayerMap
 {
@@ -31,7 +30,7 @@ namespace PlayerMap
         public static string RandomString(int length)
         {
             string[] chars = Enum.GetNames(typeof(Blocks));
-            return chars[random.Next(chars.Length)].Substring(0,2);
+            return chars[random.Next(chars.Length)].Substring(0, 2);
         }
     }
 }

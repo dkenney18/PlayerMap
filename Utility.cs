@@ -1,25 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SimpleAdventureGame
 {
-    class Utility
+    internal class Utility
     {
-        public static Item GetRandomItem(ItemRegistry itemRegistry) 
+        public static Item GetRandomItem(ItemRegistry itemRegistry)
         {
-            var random = new Random();
+            Random random = new Random();
             return itemRegistry.Items()[random.Next(itemRegistry.Items().Count)];
         }
 
         public static Item GetRandomFoodItem(ItemRegistry itemRegistry)
         {
-            while (true) 
+            while (true)
             {
-                var random = new Random();
-                var item = itemRegistry.Items()[random.Next(itemRegistry.Items().Count)];
+                Random random = new Random();
+                Item item = itemRegistry.Items()[random.Next(itemRegistry.Items().Count)];
                 if (item.tag == ItemTag.Food)
                 {
                     return item;
@@ -31,8 +27,8 @@ namespace SimpleAdventureGame
         {
             while (true)
             {
-                var random = new Random();
-                var item = itemRegistry.Items()[random.Next(itemRegistry.Items().Count)];
+                Random random = new Random();
+                Item item = itemRegistry.Items()[random.Next(itemRegistry.Items().Count)];
                 if (item.tag == ItemTag.Ore)
                 {
                     return item;

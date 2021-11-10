@@ -1,6 +1,6 @@
 ﻿namespace SimpleAdventureGame
 {
-    enum Hand
+    internal enum Hand
     {
         LEFT,
         RIGHT

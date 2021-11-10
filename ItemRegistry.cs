@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace SimpleAdventureGame
 {
-   public class ItemRegistry
+    public class ItemRegistry
     {
         private readonly List<Item> items = new();
 

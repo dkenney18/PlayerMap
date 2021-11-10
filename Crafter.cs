@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using PlayerMap;
 
 namespace SimpleAdventureGame
 {
-   public class Crafter
+    public class Crafter
     {
         private readonly Crafting_Recipes Recipes;
 
@@ -16,11 +13,11 @@ namespace SimpleAdventureGame
             Recipes = recipes;
         }
 
-        public void Craft(List<Item> items, Player player, int amountToCraft) 
+        public void Craft(List<Item> items, Player player, int amountToCraft)
         {
-            foreach (var recipes in Recipes.Instance())
+            foreach (KeyValuePair<List<ItemName>, Item> recipes in Recipes.Instance())
             {
-                var listOfItemNames = new List<ItemName>();
+                List<ItemName> listOfItemNames = new List<ItemName>();
                 recipes.Key.ForEach(item => listOfItemNames.Add(item));
 
                 bool hasTheItems = Enumerable.SequenceEqual(recipes.Key.OrderBy(e => e), listOfItemNames.OrderBy(e => e));

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using SimpleAdventureGame;
 
 namespace PlayerMap
@@ -9,46 +8,46 @@ namespace PlayerMap
         public int x;
         public int y;
         public string player_token;
-		public string name;
+        public string name;
         public int money;
         private readonly Backpack backpack = new();
         public int healthPoints = 1000;
         public int damage;
         public Item leftHand;
         public Item rightHand;
-        
-        public Player(string p_token, string name, int startingCoins) 
-		{
-            this.player_token = p_token;
-            this.name = name;
-            this.money = startingCoins;
-            this.damage = 0;
-		}
-		
-		public Player() { }
 
-		
-		 public void SetName(string n)
+        public Player(string p_token, string name, int startingCoins)
+        {
+            player_token = p_token;
+            this.name = name;
+            money = startingCoins;
+            damage = 0;
+        }
+
+        public Player() { }
+
+
+        public void SetName(string n)
         {
             name = n;
         }
 
-        public void SetHP(int hp) 
+        public void SetHP(int hp)
         {
-            this.healthPoints = hp;
+            healthPoints = hp;
         }
 
         public int GetHP()
         {
-            return this.healthPoints;
+            return healthPoints;
         }
 
-        public string GetName() 
+        public string GetName()
         {
-            return this.name;
-		}
+            return name;
+        }
 
- public void SetMoney(int m)
+        public void SetMoney(int m)
         {
             money = m;
         }
@@ -105,25 +104,25 @@ namespace PlayerMap
 
         public void SetLeftHandItem(Item item)
         {
-            this.leftHand = item;
+            leftHand = item;
             SetDamage(leftHand);
         }
 
         public void SetRighttHandItem(Item item)
         {
-            this.rightHand = item;
-            SetDamage(this.rightHand);
+            rightHand = item;
+            SetDamage(rightHand);
         }
 
         private void SetDamage(Item item)
         {
-            this.damage += item.damage;
+            damage += item.damage;
         }
 
         public void Eat(Item food)
         {
             //Console.WriteLine("Player is eating "+ food.name + "For Health " + food.damage);
-            this.healthPoints += food.damage;
+            healthPoints += food.damage;
             food.amount -= 1;
         }
 
@@ -192,7 +191,7 @@ namespace PlayerMap
             } while (ans != "113");
         }
 
-        public void PrintInventory() 
+        public void PrintInventory()
         {
             PrintItemsInBackpack();
             Console.WriteLine("Press any key to return to the main menu");
@@ -201,14 +200,14 @@ namespace PlayerMap
 
         public void Mine(Cell[,] cells)
         {
-            var item = cells[x, y].prev_space;
+            string item = cells[x, y].prev_space;
 
             if (!item.ToString().Equals(" "))
             {
-                var fullNameAsString = ConvertItemToFullName(item);
-                var itemNameEnum = ConvertStringToEnum(fullNameAsString);
-                var minedItem = GetItemByNameFromRegestry(itemNameEnum, WorldMap.registry);
-                this.AddItemToBackpack(minedItem, 1);
+                string fullNameAsString = ConvertItemToFullName(item);
+                ItemName itemNameEnum = ConvertStringToEnum(fullNameAsString);
+                Item minedItem = GetItemByNameFromRegestry(itemNameEnum, WorldMap.registry);
+                AddItemToBackpack(minedItem, 1);
                 cells[x, y].ChangeSpace(player_token);
                 cells[x, y].prev_space = " ";
             }
@@ -216,10 +215,10 @@ namespace PlayerMap
 
         private static string ConvertItemToFullName(string item)
         {
-            var names = Enum.GetNames(typeof(Blocks));
-            foreach (var i in names)
+            string[] names = Enum.GetNames(typeof(Blocks));
+            foreach (string i in names)
             {
-                if (i.Substring(0,2) == item)
+                if (i.Substring(0, 2) == item)
                 {
                     return i.ToString();
                 }
@@ -234,8 +233,8 @@ namespace PlayerMap
 
         public void MoveUp(Cell[,] cells, WorldMap map)
         {
-            var i = CalulateXAndY(x, y, map).X;
-            var j = CalulateXAndY(x, y, map).Y;
+            int i = CalulateXAndY(x, y, map).X;
+            int j = CalulateXAndY(x, y, map).Y;
 
             cells[i, j].RevertSpace();
 
@@ -251,13 +250,13 @@ namespace PlayerMap
         public void MoveDown(Cell[,] cells, WorldMap map)
         {
 
-            var i = CalulateXAndY(x, y, map).X;
-            var j = CalulateXAndY(x, y, map).Y;
+            int i = CalulateXAndY(x, y, map).X;
+            int j = CalulateXAndY(x, y, map).Y;
 
             cells[i, j].RevertSpace();
 
             x += 1;
-             
+
             i = CalulateXAndY(x, y, map).X;
 
             x = i;
@@ -267,8 +266,8 @@ namespace PlayerMap
 
         public void MoveLeft(Cell[,] cells, WorldMap map)
         {
-            var i = CalulateXAndY(x, y, map).X;
-            var j = CalulateXAndY(x, y, map).Y;
+            int i = CalulateXAndY(x, y, map).X;
+            int j = CalulateXAndY(x, y, map).Y;
 
             cells[i, j].RevertSpace();
 
@@ -283,8 +282,8 @@ namespace PlayerMap
 
         public void MoveRight(Cell[,] cells, WorldMap map)
         {
-            var i = CalulateXAndY(x, y, map).X;
-            var j = CalulateXAndY(x, y, map).Y;
+            int i = CalulateXAndY(x, y, map).X;
+            int j = CalulateXAndY(x, y, map).Y;
 
             cells[i, j].RevertSpace();
 
@@ -299,8 +298,8 @@ namespace PlayerMap
 
         public static Points CalulateXAndY(int x, int y, WorldMap map)
         {
-            var i = x - (int)((map.max_width * Math.Floor((double)x / map.max_width)));
-            var j = y - (int)((map.max_height * Math.Floor((double)y / map.max_height)));
+            int i = x - (int)((map.max_width * Math.Floor((double)x / map.max_width)));
+            int j = y - (int)((map.max_height * Math.Floor((double)y / map.max_height)));
             return new Points() { X = i, Y = j };
         }
 

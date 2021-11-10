@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace SimpleAdventureGame
 {
@@ -14,10 +13,10 @@ namespace SimpleAdventureGame
 
         public Item GiveReward()
         {
-            var random = new Random();
-            var foundItem = Utility.GetRandomItem(ItemRegistry);
+            Random random = new Random();
+            Item foundItem = Utility.GetRandomItem(ItemRegistry);
 
-            foundItem.amount = random.Next(1,5);
+            foundItem.amount = random.Next(1, 5);
 
             return foundItem;
         }

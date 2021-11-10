@@ -1,5 +1,4 @@
-﻿using System;
-namespace PlayerMap
+﻿namespace PlayerMap
 {
     public class Points : ILocation
     {

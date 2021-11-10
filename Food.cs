@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SimpleAdventureGame
+﻿namespace SimpleAdventureGame
 {
-    class Food : Item
+    internal class Food : Item
     {
 
         public Food(ItemName name, int value, int damage, int amount)
@@ -15,7 +9,7 @@ namespace SimpleAdventureGame
             this.value = value;
             this.amount = amount;
             this.damage = damage;
-            this.tag = ItemTag.Food;
+            tag = ItemTag.Food;
         }
     }
 }
