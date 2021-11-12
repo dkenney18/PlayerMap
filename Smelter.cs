@@ -17,7 +17,7 @@ namespace SimpleAdventureGame
             Item returnedIem = new Item();
             foreach (KeyValuePair<ItemName, Item> recipes in Recipes.Instance())
             {
-                if (recipes.Key.Equals(ore.name) && ore.amount <= amountToCraft)
+                if (recipes.Key.Equals(ore.name) && ore.amount >= amountToCraft)
                 {
                     returnedIem = recipes.Value;
                     ore.amount -= amountToCraft;
