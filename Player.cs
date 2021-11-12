@@ -186,6 +186,16 @@ namespace PlayerMap
                         map.crafterInterface.RunCrafterInterface();
                         break;
 
+                    // g for gather
+                    case "103":
+                        map.wander.Forage(this);
+                        break;
+
+                    // r for mine(r)
+                    case "114":
+                        map.wander.Mine(this);
+                        break;
+
                     default:
                         break;
                 }

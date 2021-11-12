@@ -85,24 +85,7 @@ namespace PlayerMap
             StringBuilder stringBuilder = new StringBuilder();
             foreach (var name in names)
             {
-                List<ItemName> playerItemNames = new List<ItemName>();
-                Dictionary<ItemName, int> itemAmounts = new Dictionary<ItemName, int>();
-                player.backpack.items.ForEach(item => playerItemNames.Add(item.name));
-                player.backpack.items.ForEach(item => itemAmounts.Add(item.name, item.amount));
-
-                var result = from a in names
-                             join b in playerItemNames on a.ToString().ToLower() equals b.ToString().ToLower()
-                             select a;
-                bool hasTheItems = result.ToList().Count != 0;
-                bool hasTheAmouts = playerItemNames.All(item => CheckIfIHaveEnough(item, itemAmounts));
-
-                if (hasTheItems && hasTheAmouts)
-                {
-                    stringBuilder.Append(" " + name + "<" + player.GetItemByName(name).amount + ">");
-                } else 
-                {
-                    stringBuilder.Append(" " + name + " ");
-                }
+                stringBuilder.Append(" " + name + "<" + player.GetItemByName(name).amount + ">");
             }
 
             return stringBuilder.ToString();
