@@ -150,7 +150,7 @@ namespace PlayerMap
             {
                 if (firstTime)
                 {
-                    Console.WriteLine("Enter q to quit the application\n Enter w a s d to control the player\n Enter f for the furnance\n Enter c for the crafter\n Enter g for grathing food\n Enter r to auto mine\n Enter h for help or to display this message again\n Enter any key to clear this message");
+                    Console.WriteLine("Enter q to quit the application\nEnter w a s d to control the player\nEnter f for the furnance\nEnter c for the crafter\nEnter g for grathing food\nEnter r to auto mine\nEnter h for help or to display this message again\nEnter any key to clear this message");
                     Console.ReadKey();
                     firstTime = false;
                 }
