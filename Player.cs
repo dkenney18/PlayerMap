@@ -213,16 +213,9 @@ namespace PlayerMap
 
         public void PrintInventory()
         {
-            string ans;
-            do
-            {
-                ans = Console.Read().ToString().Trim().ToLower();
-
-                PrintItemsInBackpack();
-                Console.WriteLine("Press q to return to the main menu");
-
-                // 113 = "q"
-            } while (ans != "113");
+            PrintItemsInBackpack();
+            Console.WriteLine("Press q to return to the main menu");
+            Console.ReadKey();
         }
 
         public void Mine(Cell[,] cells)
