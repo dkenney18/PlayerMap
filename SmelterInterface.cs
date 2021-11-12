@@ -51,7 +51,7 @@ namespace PlayerMap
                 //print the options
                 foreach (KeyValuePair<int, Dictionary<ItemName, Item>> smeltable in smelterOptions)
                 {
-                    Console.WriteLine("Enter: " + smeltable.Key + " to smelt " + smeltable.Value.Keys.First() + " => " + smeltable.Value.Values.First().name);
+                    Console.WriteLine("Enter: " + smeltable.Key + " to smelt " + smeltable.Value.Keys.First() + "<" + player.GetItemByName(smeltable.Value.Keys.First()).amount + ">" + " => " + smeltable.Value.Values.First().name);
                 }
 
                 Console.WriteLine("Enter q to go back to previous screen");
