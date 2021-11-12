@@ -15,6 +15,7 @@ namespace PlayerMap
         public int damage;
         public Item leftHand;
         public Item rightHand;
+        private bool firstTime = true;
 
         public Player(string p_token, string name, int startingCoins)
         {
@@ -147,6 +148,13 @@ namespace PlayerMap
             string ans;
             do
             {
+                if (firstTime)
+                {
+                    Console.WriteLine("Enter q to quit the application\n Enter w a s d to control the player\n Enter f for the furnance\n Enter c for the crafter\n Enter g for grathing food\n Enter r to auto mine\n Enter h for help or to display this message again\n Enter any key to clear this message");
+                    Console.ReadKey();
+                    firstTime = false;
+                }
+
                 ans = Console.Read().ToString().Trim().ToLower();
 
                 switch (ans)
@@ -196,6 +204,11 @@ namespace PlayerMap
                         map.wander.Forage(this);
                         break;
 
+                    // h for help
+                    case "104":
+                        DisplayHelp();
+                        break;
+
                     // r for mine(r)
                     case "114":
                         map.wander.Mine(this);
@@ -209,6 +222,12 @@ namespace PlayerMap
 
                 // 113 = "q"
             } while (ans != "113");
+        }
+
+        private void DisplayHelp()
+        {
+            Console.WriteLine("Enter q to quit the application\nEnter w a s d to control the player\nEnter f for the furnance\nEnter c for the crafter\nEnter g for grathing food\nEnter r to auto mine\nEnter h for help or to display this message again\nEnter any key to clear this message");
+            Console.ReadKey();
         }
 
         public void PrintInventory()
