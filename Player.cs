@@ -150,7 +150,7 @@ namespace PlayerMap
             {
                 if (firstTime)
                 {
-                    Console.WriteLine("Enter q to quit the application\nEnter w a s d to control the player\nEnter f for the furnance\nEnter c for the crafter\nEnter g for grathing food\nEnter r to auto mine\nEnter h for help or to display this message again\nEnter any key to clear this message");
+                    Console.WriteLine("Enter esc key to quit the application\nEnter w a s d to control the player\nEnter f for the furnance\nEnter c for the crafter\nEnter g for grathing food\nEnter r to auto mine\nEnter h for help or to display this message again\nEnter any key to clear this message");
                     Console.ReadKey();
                     firstTime = false;
                 }
@@ -220,13 +220,13 @@ namespace PlayerMap
 
                 map.Draw();
 
-                // 113 = "q"
-            } while (ans.KeyChar != 'q');
+                // 113 = "esc key"
+            } while (ans.KeyChar != '\u001b');
         }
 
         private void DisplayHelp()
         {
-            Console.WriteLine("Enter q to quit the application\nEnter w a s d to control the player\nEnter f for the furnance\nEnter c for the crafter\nEnter g for grathing food\nEnter r to auto mine\nEnter h for help or to display this message again\nEnter any key to clear this message");
+            Console.WriteLine("Enter ecs key to quit the application\nEnter w a s d to control the player\nEnter f for the furnance\nEnter c for the crafter\nEnter g for grathing food\nEnter r to auto mine\nEnter h for help or to display this message again\nEnter any key to clear this message");
             Console.ReadKey();
         }
 
