@@ -145,7 +145,7 @@ namespace PlayerMap
 
         public void Move(WorldMap map, Cell[,] cells)
         {
-            string ans;
+            ConsoleKeyInfo ans;
             do
             {
                 if (firstTime)
@@ -155,62 +155,62 @@ namespace PlayerMap
                     firstTime = false;
                 }
 
-                ans = Console.Read().ToString().Trim().ToLower();
+                ans = Console.ReadKey();
 
-                switch (ans)
+                switch (ans.KeyChar)
                 {
                     // w
-                    case "119":
+                    case 'w':
                         MoveUp(cells, map);
                         break;
 
                     // s
-                    case "115":
+                    case 's':
                         MoveDown(cells, map);
                         break;
 
                     // a
-                    case "97":
+                    case 'a':
                         MoveLeft(cells, map);
                         break;
 
                     // d
-                    case "100":
+                    case 'd':
                         MoveRight(cells, map);
                         break;
 
                     // m
-                    case "109":
+                    case 'm':
                         Mine(cells);
                         break;
 
                     // i
-                    case "105":
+                    case 'i':
                         PrintInventory();
                         break;
 
                     // f for smelter (furnace)
-                    case "102":
+                    case 'f':
                         map.smelterInterface.RunSmelterInterface();
                         break;
 
                     // c for crafter
-                    case "99":
+                    case 'c':
                         map.crafterInterface.RunCrafterInterface();
                         break;
 
                     // g for gather
-                    case "103":
+                    case 'g':
                         map.wander.Forage(this);
                         break;
 
                     // h for help
-                    case "104":
+                    case 'h':
                         DisplayHelp();
                         break;
 
                     // r for mine(r)
-                    case "114":
+                    case 'r':
                         map.wander.Mine(this);
                         break;
 
@@ -221,7 +221,7 @@ namespace PlayerMap
                 map.Draw();
 
                 // 113 = "q"
-            } while (ans != "113");
+            } while (ans.KeyChar != 'q');
         }
 
         private void DisplayHelp()
@@ -241,7 +241,7 @@ namespace PlayerMap
         {
             string item = cells[x, y].prev_space;
 
-            if (!item.ToString().Equals(" "))
+            if (!item.ToString().Equals("  "))
             {
                 string fullNameAsString = ConvertItemToFullName(item);
                 ItemName itemNameEnum = ConvertStringToEnum(fullNameAsString);
@@ -249,7 +249,7 @@ namespace PlayerMap
                 AddItemToBackpack(minedItem, 1);
                 SetMoney(ValueOfBackpack());
                 cells[x, y].ChangeSpace(player_token);
-                cells[x, y].prev_space = " ";
+                cells[x, y].prev_space = "  ";
             }
         }
 
