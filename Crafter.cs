@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using PlayerMap;
 
 namespace SimpleAdventureGame
 {
     public class Crafter
     {
-        public  Crafting_Recipes Recipes;
+        public Crafting_Recipes Recipes;
 
         public Crafter(Crafting_Recipes recipes)
         {

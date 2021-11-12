@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using SimpleAdventureGame;
 
 namespace PlayerMap
@@ -68,7 +67,7 @@ namespace PlayerMap
                     if (result == craftable.Key.ToString())
                     {
                         List<Item> items = new List<Item>();
-                        var names = craftable.Value.Keys.First().ToList();
+                        List<ItemName> names = craftable.Value.Keys.First().ToList();
                         names.ForEach(item => items.Add(player.GetItemByName(item)));
                         crafter.Craft(items, player, 1);
                     }
@@ -83,7 +82,7 @@ namespace PlayerMap
         public string DisplayListItems(List<ItemName> names)
         {
             StringBuilder stringBuilder = new StringBuilder();
-            foreach (var name in names)
+            foreach (ItemName name in names)
             {
                 stringBuilder.Append(" " + name + "<" + player.GetItemByName(name).amount + ">");
             }
@@ -98,18 +97,18 @@ namespace PlayerMap
             player.backpack.items.ForEach(item => playerItemNames.Add(item.name));
             player.backpack.items.ForEach(item => itemAmounts.Add(item.name, item.amount));
 
-            var result = from a in craftingRecipes
-                     join b in playerItemNames on a.ToString().ToLower() equals b.ToString().ToLower()
-                     select a;
+            IEnumerable<ItemName> result = from a in craftingRecipes
+                                           join b in playerItemNames on a.ToString().ToLower() equals b.ToString().ToLower()
+                                           select a;
             bool hasTheItems = result.ToList().Count != 0;
             bool hasTheAmouts = playerItemNames.All(item => CheckIfIHaveEnough(item, itemAmounts));
 
-                if (hasTheItems && hasTheAmouts)
-                {
-                    return true;
-                }
-            return false;
+            if (hasTheItems && hasTheAmouts)
+            {
+                return true;
             }
+            return false;
+        }
 
         private bool CheckIfIHaveEnough(ItemName item, Dictionary<ItemName, int> itemsAndAmounts)
         {
