@@ -50,7 +50,12 @@ namespace SimpleAdventureGame
 
         public void PrintItems()
         {
-            items.ForEach(item => Console.WriteLine($"name: {item.name}\nvalue: {item.value}\ndamage: {item.damage}\n amout: {item.amount}"));
+            items.ForEach(item => Console.WriteLine($"{item.name}<{item.amount}>"));
+        }
+
+        public void PrintItemsWithDetails()
+        {
+            items.ForEach(item => Console.WriteLine($"name: {item.name}\nvalue: {item.value}\ndamage: {item.damage}\namout: {item.amount}"));
         }
 
     }

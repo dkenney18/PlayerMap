@@ -97,6 +97,11 @@ namespace PlayerMap
             backpack.PrintItems();
         }
 
+        public void PrintItemsInBackpack_Detailed()
+        {
+            backpack.PrintItemsWithDetails();
+        }
+
         public static void PrintAnItem(Item item)
         {
             Backpack.PrintItem(item);
@@ -208,9 +213,16 @@ namespace PlayerMap
 
         public void PrintInventory()
         {
-            PrintItemsInBackpack();
-            Console.WriteLine("Press any key to return to the main menu");
-            Console.ReadKey();
+            string ans;
+            do
+            {
+                ans = Console.Read().ToString().Trim().ToLower();
+
+                PrintItemsInBackpack();
+                Console.WriteLine("Press q to return to the main menu");
+
+                // 113 = "q"
+            } while (ans != "113");
         }
 
         public void Mine(Cell[,] cells)
