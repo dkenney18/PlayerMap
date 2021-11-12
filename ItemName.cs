@@ -16,7 +16,7 @@
         Steel_Ingot,
 
         Stone,
-        Dirt,
+        Rock,
         Diamond,
         Emerald,
         Saphire,
@@ -47,6 +47,6 @@
         Tomato,
 
         Wood,
-        Sticks
+        Sticks,
     }
 }

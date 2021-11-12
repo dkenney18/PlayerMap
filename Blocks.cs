@@ -8,7 +8,7 @@
         Copper_Ore,
         Iron_Ore,
         Stone,
-        Dirt,
+        Rock,
         Diamond,
         Emerald,
         Saphire,

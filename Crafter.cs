@@ -1,12 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using PlayerMap;
 
 namespace SimpleAdventureGame
 {
     public class Crafter
     {
-        private readonly Crafting_Recipes Recipes;
+        public  Crafting_Recipes Recipes;
 
         public Crafter(Crafting_Recipes recipes)
         {
@@ -20,14 +22,22 @@ namespace SimpleAdventureGame
                 List<ItemName> listOfItemNames = new List<ItemName>();
                 recipes.Key.ForEach(item => listOfItemNames.Add(item));
 
-                bool hasTheItems = Enumerable.SequenceEqual(recipes.Key.OrderBy(e => e), listOfItemNames.OrderBy(e => e));
-                bool hasTheAmouts = items.All(item => item.amount >= amountToCraft);
-
-                if (hasTheItems && hasTheAmouts)
+                try
                 {
-                    items.ForEach(item => item.amount -= amountToCraft);
-                    player.AddItemToBackpack(recipes.Value, amountToCraft);
-                    return;
+                    bool hasTheAmounts = items.All(item => item.amount >= amountToCraft);
+                    bool hasTheMoney = player.GetMoney() >= recipes.Value.value;
+                    bool hasTheItems = Enumerable.SequenceEqual(recipes.Key.OrderBy(e => e), listOfItemNames.OrderBy(e => e));
+
+                    if (hasTheItems && hasTheAmounts && hasTheMoney && items.All(item => listOfItemNames.Contains(item.name)))
+                    {
+                        items.ForEach(item => item.amount -= amountToCraft);
+                        player.AddItemToBackpack(recipes.Value, amountToCraft);
+                        return;
+                    }
+                }
+                catch (System.Exception)
+                {
+                    Craft(items, player, amountToCraft);
                 }
             }
         }

@@ -27,6 +27,7 @@ namespace PlayerMap
         public static Player player = new("#", "Devin", 1000000);
 
         public SmelterInterface smelterInterface = new SmelterInterface(smelter, player);
+        public CrafterInterface crafterInterface = new CrafterInterface(crafter, player);
 
         public Monster zombie = new("Zombie", 100, new Reward(registry), 10);
 
@@ -90,45 +91,6 @@ namespace PlayerMap
             player.SetRighttHandItem(registry.GetItemByName(ItemName.Wood_Axe));
 
             combat = new(player, monsterRegistry.GetMonsterByName("Zombie"));
-
-            //smelterInterface.Run();
-
-
-            ////player.PrintItemsInBackpack();
-            //Console.WriteLine(player.GetMoney());
-            //combat.Fight();
-            //Console.WriteLine(player.GetMoney());
-
-            //for (int i = 0; i < 1; i++)
-            //{
-            //    wander.Forage(player);
-            //    wander.Mine(player);
-            //}
-
-            ////Added Smelting
-            //smelter.Smelt(player.GetItemByName(ItemName.Copper_Ore), player, 2);
-
-            //smelter.Smelt(player.GetItemByName(ItemName.Bronze_Ore), player, 1);
-            //smelter.Smelt(player.GetItemByName(ItemName.Silver_Ore), player, 1);
-            //smelter.Smelt(player.GetItemByName(ItemName.Gold_Ore), player, 1);
-
-            ////Added Food
-            //player.Eat(player.GetItemByName(ItemName.Apple));
-
-            ////Added Crafting
-
-            ////Makes Sticks
-            //List<Item> stick_items = new() { player.GetItemByName(ItemName.Wood) };
-            //crafter.Craft(stick_items, player, 1);
-
-            ////Makes a Wooden Sword
-            //List<Item> wood_sword_items = new()
-            //{
-            //    player.GetItemByName(ItemName.Sticks),
-            //    player.GetItemByName(ItemName.Wood),
-            //    player.GetItemByName(ItemName.Wood)
-            //};
-            //crafter.Craft(wood_sword_items, player, 1);
         }
 
         private void AddItemsToPlayersBackpack()
@@ -141,9 +103,10 @@ namespace PlayerMap
             player.AddItemToBackpack(registry.GetItemByName(ItemName.Copper_Ore), 1);
 
             player.AddItemToBackpack(registry.GetItemByName(ItemName.Wood_Axe), 1);
-            player.AddItemToBackpack(registry.GetItemByName(ItemName.Wood_Sword), 1);
+            player.AddItemToBackpack(registry.GetItemByName(ItemName.Wood_Sword), 0);
 
             player.AddItemToBackpack(registry.GetItemByName(ItemName.Wood), 10);
+            player.AddItemToBackpack(registry.GetItemByName(ItemName.Sticks), 10);
 
             player.AddItemToBackpack(registry.GetItemByName(ItemName.Apple), 4);
 
@@ -217,7 +180,7 @@ namespace PlayerMap
             registry.AddItemToRegestry(new Ingot(name: ItemName.Steel_Ingot, value: 3, damage: 1, amount: 1));
 
             //Wood Weapons
-            registry.AddItemToRegestry(new Weapon(name: ItemName.Wood_Sword, value: 1000, damage: 15, amount: 2));
+            registry.AddItemToRegestry(new Weapon(name: ItemName.Wood_Sword, value: 1000, damage: 15, amount: 1));
             registry.AddItemToRegestry(new Weapon(name: ItemName.Wood_Axe, value: 500, damage: 5, amount: 1));
 
             //Copper Weapons
@@ -256,7 +219,7 @@ namespace PlayerMap
             registry.AddItemToRegestry(new Item(name: ItemName.Wood, value: 3, damage: 1, amount: 1));
             registry.AddItemToRegestry(new Item(name: ItemName.Sticks, value: 1, damage: 1, amount: 1));
             registry.AddItemToRegestry(new Item(name: ItemName.Stone, value: 1, damage: 1, amount: 1));
-            registry.AddItemToRegestry(new Item(name: ItemName.Dirt, value: 1, damage: 1, amount: 1));
+            registry.AddItemToRegestry(new Item(name: ItemName.Rock, value: 1, damage: 1, amount: 1));
             registry.AddItemToRegestry(new Item(name: ItemName.Diamond, value: 1000, damage: 1, amount: 1));
             registry.AddItemToRegestry(new Item(name: ItemName.Emerald, value: 500, damage: 1, amount: 1));
             registry.AddItemToRegestry(new Item(name: ItemName.Saphire, value: 700, damage: 1, amount: 1));

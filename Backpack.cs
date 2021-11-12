@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace SimpleAdventureGame
 {
-    internal class Backpack
+    public class Backpack
     {
         public List<Item> items = new();
 

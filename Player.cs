@@ -10,7 +10,7 @@ namespace PlayerMap
         public string player_token;
         public string name;
         public int money;
-        private readonly Backpack backpack = new();
+        public Backpack backpack = new();
         public int healthPoints = 1000;
         public int damage;
         public Item leftHand;
@@ -181,6 +181,11 @@ namespace PlayerMap
                         map.smelterInterface.RunSmelterInterface();
                         break;
 
+                    // c for crafter
+                    case "99":
+                        map.crafterInterface.RunCrafterInterface();
+                        break;
+
                     default:
                         break;
                 }
@@ -208,12 +213,13 @@ namespace PlayerMap
                 ItemName itemNameEnum = ConvertStringToEnum(fullNameAsString);
                 Item minedItem = GetItemByNameFromRegestry(itemNameEnum, WorldMap.registry);
                 AddItemToBackpack(minedItem, 1);
+                SetMoney(ValueOfBackpack());
                 cells[x, y].ChangeSpace(player_token);
                 cells[x, y].prev_space = " ";
             }
         }
 
-        private static string ConvertItemToFullName(string item)
+        public string ConvertItemToFullName(string item)
         {
             string[] names = Enum.GetNames(typeof(Blocks));
             foreach (string i in names)
@@ -226,7 +232,7 @@ namespace PlayerMap
             return "";
         }
 
-        private static ItemName ConvertStringToEnum(string itemName)
+        public ItemName ConvertStringToEnum(string itemName)
         {
             return (ItemName)Enum.Parse(typeof(ItemName), itemName);
         }
