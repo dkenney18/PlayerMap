@@ -42,7 +42,7 @@ namespace PlayerMap
 
         public void RunSmelterInterface()
         {
-            string ans;
+            ConsoleKeyInfo ans;
 
             CreateSmelterOptions();
 
@@ -56,14 +56,12 @@ namespace PlayerMap
 
                 Console.WriteLine("Enter q to go back to previous screen");
 
-                ans = Console.Read().ToString().Trim().ToLower();
+                ans = Console.ReadKey();
 
                 //smelt the right option
                 foreach (KeyValuePair<int, Dictionary<ItemName, Item>> smeltable in smelterOptions)
                 {
-                    bool res = int.TryParse(ans, out int number);
-                    string result = char.ConvertFromUtf32(number);
-                    if (result == smeltable.Key.ToString())
+                    if (ans.KeyChar.ToString() == smeltable.Key.ToString())
                     {
                         Item item = player.GetItemByName(smeltable.Value.Keys.First());
                         smelter.Smelt(item, player, 1);
@@ -73,7 +71,7 @@ namespace PlayerMap
                 Console.Clear();
 
                 //113 = q for quit
-            } while (ans != "113");
+            } while (ans.KeyChar != 'q');
         }
 
         public bool CanISmelt(ItemName oreName)

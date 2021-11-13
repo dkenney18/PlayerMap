@@ -44,7 +44,7 @@ namespace PlayerMap
 
         public void RunCrafterInterface()
         {
-            string ans;
+            ConsoleKeyInfo ans;
 
             CreateSmelterOptions();
 
@@ -58,14 +58,13 @@ namespace PlayerMap
 
                 Console.WriteLine("Enter q to go back to previous screen");
 
-                ans = Console.Read().ToString().Trim().ToLower();
+                ans = Console.ReadKey();
 
                 //craft the right option
                 foreach (KeyValuePair<int, Dictionary<List<ItemName>, Item>> craftable in crafterOptions)
                 {
-                    bool res = int.TryParse(ans, out int number);
-                    string result = char.ConvertFromUtf32(number);
-                    if (result == craftable.Key.ToString())
+                    
+                    if (ans.KeyChar.ToString() == craftable.Key.ToString())
                     {
                         List<Item> items = new List<Item>();
                         var names = craftable.Value.Keys.First().ToList();
@@ -77,7 +76,7 @@ namespace PlayerMap
                 Console.Clear();
 
                 //113 = q for quit
-            } while (ans != "113");
+            } while (ans.KeyChar != 'q');
         }
 
         public string DisplayListItems(List<ItemName> names)

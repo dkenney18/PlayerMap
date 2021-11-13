@@ -226,7 +226,7 @@ namespace PlayerMap
 
         private void DisplayHelp()
         {
-            Console.WriteLine("Enter ecs key to quit the application\nEnter w a s d to control the player\nEnter f for the furnance\nEnter c for the crafter\nEnter g for grathing food\nEnter r to auto mine\nEnter h for help or to display this message again\nEnter any key to clear this message");
+            Console.WriteLine("Enter esc key to quit the application\nEnter w a s d to control the player\nEnter f for the furnance\nEnter c for the crafter\nEnter g for grathing food\nEnter r to auto mine\nEnter h for help or to display this message again\nEnter any key to clear this message");
             Console.ReadKey();
         }
 
