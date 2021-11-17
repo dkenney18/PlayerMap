@@ -10,7 +10,7 @@ namespace PlayerMap
         public string player_token;
         public string name;
         public int money;
-        public Backpack backpack = new();
+        public Backpack backpack = new Backpack();
         public int healthPoints = 1000;
         public int damage;
         public Item leftHand;

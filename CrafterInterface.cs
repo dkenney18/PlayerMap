@@ -113,7 +113,7 @@ namespace PlayerMap
         private bool CheckIfIHaveEnough(ItemName item, Dictionary<ItemName, int> itemsAndAmounts)
         {
             List<Item> playerItems = new List<Item>();
-            player.backpack.items.ForEach(item => playerItems.Add(item));
+            player.backpack.items.ForEach(it => playerItems.Add(it));
             foreach (KeyValuePair<ItemName, int> items in itemsAndAmounts)
             {
                 if (item == items.Key && playerItems.Contains(player.GetItemByName(item)) && player.GetItemByName(item).amount >= items.Value)

@@ -1,10 +1,10 @@
 ﻿namespace PlayerMap
 {
-    internal class Program
+    class Program
     {
         private static void Main()
         {
-            WorldMap map = new(10, 10);
+            WorldMap map = new WorldMap(10, 10);
 
             map.GenerateMap();
             map.Draw();
