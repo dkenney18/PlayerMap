@@ -3,6 +3,7 @@ using System.Text.Json.Serialization;
 using SimpleAdventureGame;
 using PlayerMap;
 using System.IO;
+using System.Threading.Tasks;
 
 public class JsonUtils
 {
@@ -37,4 +38,21 @@ public class JsonUtils
         await JsonSerializer.SerializeAsync(createStream, player);
         await createStream.DisposeAsync();
     }
+
+    public async Task LoadJson(string fileName, Player player)
+    {
+        using FileStream openStream = File.OpenRead(fileName);
+        Player p = await JsonSerializer.DeserializeAsync<Player>(openStream);
+        player.x = p.x;
+        player.y = p.y;
+        player.player_token = p.player_token;
+        player.name = p.name;
+        player.money = p.money;
+        player.backpack = p.backpack;
+        player.healthPoints = p.healthPoints;
+        player.damage = p.damage;
+        player.leftHand = p.leftHand;
+        player.rightHand = p.rightHand;
+        player.firstTime = p.firstTime;
+}
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using SimpleAdventureGame;
 
 namespace PlayerMap
@@ -18,6 +19,8 @@ namespace PlayerMap
         public bool firstTime { get; set; }
         private string helpMsg = "Enter ecs key to quit the application\nEnter w a s d to control the player\nEnter f for the furnance\nEnter c for the crafter\nEnter g for grathing food\nEnter r to auto mine\nEnter i for inventory\nEnter h for help or to display this message again\nEnter any key to clear this message";
         public Guid guid { get; set; }
+
+        public JsonUtils jsonUtils = new JsonUtils();
 
         public Player(string p_token, string name, int startingCoins)
         {
@@ -149,7 +152,7 @@ namespace PlayerMap
             return player_token;
         }
 
-        public void Move(WorldMap map, Cell[,] cells)
+        public async Task Move(WorldMap map, Cell[,] cells)
         {
             var looping = true;
             ConsoleKeyInfo ans;
@@ -223,9 +226,14 @@ namespace PlayerMap
                         break;
 
                     case 'q':
-                        JsonUtils jsonUtils = new JsonUtils();
+                       
                         jsonUtils.SaveJson(player: this);
                         looping = false;
+                        break;
+
+                    case 'l':
+                        var path = @$"\\P47ISSHRS01\isshared\Everyone\Devin Kenney\Code\C#\PlayerMap\playersJson\";
+                        await jsonUtils.LoadJson($"{path}55bbf82d-8675-4410-9eed-c761c4c28998.json", this);
                         break;
 
                     default:

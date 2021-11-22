@@ -1,8 +1,10 @@
-﻿namespace PlayerMap
+﻿using System.Threading.Tasks;
+
+namespace PlayerMap
 {
     internal class Program
     {
-        private static void Main()
+        private static async Task Main()
         {
             WorldMap map = new(10, 10);
 
@@ -10,7 +12,7 @@
             map.Draw();
 
             //starts the Console interface
-            WorldMap.player.Move(map, map.cells);
+            await WorldMap.player.Move(map, map.cells);
         }
     }
 }
