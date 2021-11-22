@@ -34,7 +34,7 @@ namespace SimpleAdventureGame
 
             player.AddItemToBackpack(foundItem, foundItem.amount);
 
-            Console.WriteLine("Found: " + foundItem.name + "\n" + "And added: " + foundItem.amount + " To " + player.name + "'s backpack");
+            //Console.WriteLine("Found: " + foundItem.name + "\n" + "And added: " + foundItem.amount + " To " + player.name + "'s backpack");
 
             player.SetMoney(player.ValueOfBackpack());
         }

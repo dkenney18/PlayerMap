@@ -16,6 +16,7 @@ namespace PlayerMap
         public Item leftHand;
         public Item rightHand;
         private bool firstTime = true;
+        private string helpMsg = "Enter ecs key to quit the application\nEnter w a s d to control the player\nEnter f for the furnance\nEnter c for the crafter\nEnter g for grathing food\nEnter r to auto mine\nEnter i for inventory\nEnter h for help or to display this message again\nEnter any key to clear this message";
 
         public Player(string p_token, string name, int startingCoins)
         {
@@ -150,7 +151,7 @@ namespace PlayerMap
             {
                 if (firstTime)
                 {
-                    Console.WriteLine("Enter esc key to quit the application\nEnter w a s d to control the player\nEnter f for the furnance\nEnter c for the crafter\nEnter g for grathing food\nEnter r to auto mine\nEnter h for help or to display this message again\nEnter any key to clear this message");
+                    Console.WriteLine(helpMsg);
                     Console.ReadKey();
                     firstTime = false;
                 }
@@ -211,7 +212,8 @@ namespace PlayerMap
 
                     // r for mine(r)
                     case 'r':
-                        map.wander.Mine(this);
+                        Player player = this;
+                        map.wander.Mine(player);
                         break;
 
                     default:
@@ -220,20 +222,19 @@ namespace PlayerMap
 
                 map.Draw();
 
-                // 113 = "esc key"
+                // \u001b = "esc key"
             } while (ans.KeyChar != '\u001b');
         }
 
         private void DisplayHelp()
         {
-            Console.WriteLine("Enter ecs key to quit the application\nEnter w a s d to control the player\nEnter f for the furnance\nEnter c for the crafter\nEnter g for grathing food\nEnter r to auto mine\nEnter h for help or to display this message again\nEnter any key to clear this message");
-            Console.ReadKey();
+            Console.WriteLine(helpMsg);
         }
 
         public void PrintInventory()
         {
             PrintItemsInBackpack();
-            Console.WriteLine("Press q to return to the main menu");
+            Console.WriteLine("Press any key to return to the main menu");
             Console.ReadKey();
         }
 
@@ -241,7 +242,7 @@ namespace PlayerMap
         {
             string item = cells[x, y].prev_space;
 
-            if (!item.ToString().Equals("  "))
+            if (!item.ToString().Trim().Equals(""))
             {
                 string fullNameAsString = ConvertItemToFullName(item);
                 ItemName itemNameEnum = ConvertStringToEnum(fullNameAsString);

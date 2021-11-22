@@ -10,6 +10,7 @@ namespace PlayerMap
         public int max_height;
         public int mid_x;
         public int mid_y;
+        public bool firstTime = true;
         public Cell[,] cells;
         public static ItemRegistry registry = new();
         public NPCRegistry npcRegistry = new();
@@ -55,7 +56,15 @@ namespace PlayerMap
                     cells[i, j] = new Cell();
                 }
             }
+            if (firstTime)
+            {
+                Setup();
+                firstTime = false;
+            }
+        }
 
+        public void Setup()
+        {
             SetupPlayer();
             Run();
         }
@@ -70,6 +79,18 @@ namespace PlayerMap
                     Console.Write(string.Format("{0} ", cells[i, j].GetSpace()));
                 }
                 Console.Write(Environment.NewLine + Environment.NewLine);
+            }
+
+            // regenerate the Cells if they are empty, this fixes the problem of regenrating the cells for now
+            for (int i = 0; i < max_width; i++)
+            {
+                for (int j = 0; j < max_height; j++)
+                {
+                    if (cells[i, j].space == "  ")
+                    {
+                        cells[i, j] = new Cell();
+                    }
+                }
             }
         }
 
