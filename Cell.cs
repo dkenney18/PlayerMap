@@ -6,7 +6,7 @@ namespace PlayerMap
     {
         public string space;
         public string prev_space;
-        private static readonly Random random = new Random();
+        private static readonly Random random = new();
         public Cell()
         {
             space = RandomString(1);

@@ -4,7 +4,7 @@ namespace SimpleAdventureGame
 {
     public class MonsterRegistry
     {
-        private readonly List<Monster> monsters = new List<Monster>();
+        private readonly List<Monster> monsters = new();
 
         public Monster GetMonsterByName(string monsterName)
         {

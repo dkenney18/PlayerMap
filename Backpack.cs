@@ -5,7 +5,7 @@ namespace SimpleAdventureGame
 {
     public class Backpack
     {
-        public List<Item> items = new List<Item>();
+        public List<Item> items = new();
 
         public void AddItemToBackpack(Item item, int addamount)
         {

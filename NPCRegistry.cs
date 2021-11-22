@@ -5,7 +5,7 @@ namespace SimpleAdventureGame
 {
     public class NPCRegistry
     {
-        private readonly List<Player> players = new List<Player>();
+        private readonly List<Player> players = new();
 
         public Player GetNPCByName(string npcName)
         {
