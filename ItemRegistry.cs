@@ -4,7 +4,7 @@ namespace SimpleAdventureGame
 {
     public class ItemRegistry
     {
-        private readonly List<Item> items = new();
+        private readonly List<Item> items = new List<Item>();
 
         public Item GetItemByName(ItemName itemName)
         {

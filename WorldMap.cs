@@ -12,25 +12,25 @@ namespace PlayerMap
         public int mid_y;
         public bool firstTime = true;
         public Cell[,] cells;
-        public static ItemRegistry registry = new();
-        public NPCRegistry npcRegistry = new();
-        public MonsterRegistry monsterRegistry = new();
+        public static ItemRegistry registry = new ItemRegistry();
+        public NPCRegistry npcRegistry = new NPCRegistry();
+        public MonsterRegistry monsterRegistry = new MonsterRegistry();
         public Combat combat;
 
-        public static Smelting_Recipes smelting_Recipes = new();
-        public static Crafting_Recipes crafting_recipes = new();
+        public static Smelting_Recipes smelting_Recipes = new Smelting_Recipes();
+        public static Crafting_Recipes crafting_recipes = new Crafting_Recipes();
 
-        public static Smelter smelter = new(smelting_Recipes);
-        public static Crafter crafter = new(crafting_recipes);
+        public static Smelter smelter = new Smelter(smelting_Recipes);
+        public static Crafter crafter = new Crafter(crafting_recipes);
 
-        public Wander wander = new(registry);
+        public Wander wander = new Wander(registry);
 
-        public static Player player = new("#", "Devin", 1000000);
+        public static Player player = new Player("#", "Devin", 1000000);
 
         public SmelterInterface smelterInterface = new SmelterInterface(smelter, player);
         public CrafterInterface crafterInterface = new CrafterInterface(crafter, player);
 
-        public Monster zombie = new("Zombie", 100, new Reward(registry), 10);
+        public Monster zombie = new Monster("Zombie", 100, new Reward(registry), 10);
 
         public WorldMap(int width, int height)
         {
@@ -111,7 +111,7 @@ namespace PlayerMap
             player.SetLeftHandItem(registry.GetItemByName(ItemName.Wood_Sword));
             player.SetRighttHandItem(registry.GetItemByName(ItemName.Wood_Axe));
 
-            combat = new(player, monsterRegistry.GetMonsterByName("Zombie"));
+            combat = new Combat(player, monsterRegistry.GetMonsterByName("Zombie"));
         }
 
         private void AddItemsToPlayersBackpack()
@@ -213,7 +213,7 @@ namespace PlayerMap
             registry.AddItemToRegestry(new Weapon(name: ItemName.Bronze_Axe, value: 500, damage: 5, amount: 1));
 
             //Silver Weapons
-            registry.AddItemToRegestry(new Weapon(name: ItemName.Silver_Sword, value: 1000, 15, amount: 1));
+            registry.AddItemToRegestry(new Weapon(name: ItemName.Silver_Sword, value: 1000, damage: 15, amount: 1));
             registry.AddItemToRegestry(new Weapon(name: ItemName.Silver_Axe, value: 500, damage: 5, amount: 1));
 
             //Gold Weapons
