@@ -10,7 +10,6 @@ namespace PlayerMap
         public int max_height;
         public int mid_x;
         public int mid_y;
-        public bool firstTime = true;
         public Cell[,] cells;
         public static ItemRegistry registry = new();
         public NPCRegistry npcRegistry = new();
@@ -56,11 +55,7 @@ namespace PlayerMap
                     cells[i, j] = new Cell();
                 }
             }
-            if (firstTime)
-            {
-                Setup();
-                firstTime = false;
-            }
+            Setup();
         }
 
         public void Setup()

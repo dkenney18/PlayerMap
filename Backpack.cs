@@ -5,7 +5,12 @@ namespace SimpleAdventureGame
 {
     public class Backpack
     {
-        public List<Item> items = new();
+        public List<Item> items { get; set; }
+
+        public Backpack()
+        {
+            items = new List<Item>();
+        }
 
         public void AddItemToBackpack(Item item, int addamount)
         {

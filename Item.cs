@@ -3,12 +3,12 @@ namespace SimpleAdventureGame
 {
     public class Item
     {
-        public ItemName name;
-        public int value;
-        public int damage;
-        public int amount;
+        public ItemName name { get; set; }
+        public int value { get; set; }
+        public int damage { get; set; }
+        public int amount { get; set; }
         public Enum hand = Hand.LEFT;
-        public ItemTag tag;
+        public ItemTag tag { get; set; }
         public Item(ItemName name, int value, int damage, int amount)
         {
             this.name = name;

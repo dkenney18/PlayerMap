@@ -5,7 +5,20 @@ VisualStudioVersion = 16.0.31727.386
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlayerMap", "PlayerMap.csproj", "{047F0074-92E0-4174-A9AE-794AE0D9A2AE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayerMapTests", "..\PlayerMapTests\PlayerMapTests.csproj", "{EE2C8180-72AA-4CFF-8C7A-675F25A6A380}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlayerMapTests", "..\PlayerMapTests\PlayerMapTests.csproj", "{EE2C8180-72AA-4CFF-8C7A-675F25A6A380}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "json", "json", "{B88BE827-7E4E-4849-B197-640A479FBC30}"
+	ProjectSection(SolutionItems) = preProject
+		jsonUtils.cs = jsonUtils.cs
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Models", "Models", "{9BFB952C-1A46-46F1-B3E4-437E336367A2}"
+	ProjectSection(SolutionItems) = preProject
+		BackpackModel.cs = BackpackModel.cs
+		Data.cs = Data.cs
+		ItemModel.cs = ItemModel.cs
+		PlayerModel.cs = PlayerModel.cs
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

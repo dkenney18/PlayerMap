@@ -5,18 +5,19 @@ namespace PlayerMap
 {
     public class Player
     {
-        public int x;
-        public int y;
-        public string player_token;
-        public string name;
-        public int money;
-        public Backpack backpack = new();
-        public int healthPoints = 1000;
-        public int damage;
-        public Item leftHand;
-        public Item rightHand;
-        private bool firstTime = true;
+        public int x { get; set; }
+        public int y { get; set; }
+        public string player_token { get; set; }
+        public string name { get; set; }
+        public int money { get; set; }
+        public Backpack backpack { get; set; }
+        public int healthPoints { get; set; }
+        public int damage { get; set; }
+        public Item leftHand { get; set; }
+        public Item rightHand { get; set; }
+        public bool firstTime { get; set; }
         private string helpMsg = "Enter ecs key to quit the application\nEnter w a s d to control the player\nEnter f for the furnance\nEnter c for the crafter\nEnter g for grathing food\nEnter r to auto mine\nEnter i for inventory\nEnter h for help or to display this message again\nEnter any key to clear this message";
+        public Guid guid { get; set; }
 
         public Player(string p_token, string name, int startingCoins)
         {
@@ -24,6 +25,10 @@ namespace PlayerMap
             this.name = name;
             money = startingCoins;
             damage = 0;
+            healthPoints = 1000;
+            firstTime = true;
+            backpack = new Backpack();
+            guid = Guid.NewGuid();
         }
 
         public Player() { }
@@ -146,6 +151,7 @@ namespace PlayerMap
 
         public void Move(WorldMap map, Cell[,] cells)
         {
+            var looping = true;
             ConsoleKeyInfo ans;
             do
             {
@@ -216,6 +222,12 @@ namespace PlayerMap
                         map.wander.Mine(player);
                         break;
 
+                    case 'q':
+                        JsonUtils jsonUtils = new JsonUtils();
+                        jsonUtils.SaveJson(player: this);
+                        looping = false;
+                        break;
+
                     default:
                         break;
                 }
@@ -223,7 +235,7 @@ namespace PlayerMap
                 map.Draw();
 
                 // \u001b = "esc key"
-            } while (ans.KeyChar != '\u001b');
+            } while (looping);
         }
 
         private void DisplayHelp()
