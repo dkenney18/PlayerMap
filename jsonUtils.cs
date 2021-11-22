@@ -31,7 +31,9 @@ public class JsonUtils
 
     public async void SaveJson(Player player)
     {
-        using FileStream createStream = File.Create(@$"\\P47ISSHRS01\isshared\Everyone\Devin Kenney\Code\C#\PlayerMap\playersJson\{player.guid}.json");
+        var path = @$"\\P47ISSHRS01\isshared\Everyone\Devin Kenney\Code\C#\PlayerMap\playersJson\";
+        var filename = $"{player.guid}.json";
+        using FileStream createStream = File.Create(path + filename);
         await JsonSerializer.SerializeAsync(createStream, player);
         await createStream.DisposeAsync();
     }
