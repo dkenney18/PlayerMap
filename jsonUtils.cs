@@ -3,6 +3,7 @@ using System.Text.Json.Serialization;
 using SimpleAdventureGame;
 using PlayerMap;
 using System.IO;
+using System;
 using System.Threading.Tasks;
 
 public class JsonUtils
@@ -32,8 +33,16 @@ public class JsonUtils
 
     public async void SaveJson(Player player)
     {
-        var path = @$"\\P47ISSHRS01\isshared\Everyone\Devin Kenney\Code\C#\PlayerMap\playersJson\";
+        var path = Directory.GetCurrentDirectory() + @"/playersJson/";
         var filename = $"{player.guid}.json";
+        if (!Directory.Exists(Directory.GetCurrentDirectory() + @"/playersJson/"))
+        {
+            Directory.CreateDirectory(Directory.GetCurrentDirectory() + @"/playersJson/");
+            path = Directory.GetCurrentDirectory() + @"/playersJson/";
+            filename = $"{player.guid}.json";
+        }
+        path = Directory.GetCurrentDirectory() + @"/playersJson/";
+        filename = $"{player.guid}.json";
         using FileStream createStream = File.Create(path + filename);
         await JsonSerializer.SerializeAsync(createStream, player);
         await createStream.DisposeAsync();

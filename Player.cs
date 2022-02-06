@@ -67,6 +67,11 @@ namespace PlayerMap
             money += m;
         }
 
+        public void RemoveMoney(int m)
+        {
+            money -= m;
+        }
+
         public int GetMoney()
         {
             return money;
