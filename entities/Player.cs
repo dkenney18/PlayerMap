@@ -2,7 +2,9 @@
 //SQA Test Analyst
 //Publix Supermarkets
 //Phone number: 863-999-2432
+
 using System;
+using System.IO;
 using System.Threading.Tasks;
 using SimpleAdventureGame;
 
@@ -220,7 +222,7 @@ namespace PlayerMap
                         break;
 
                     case 'l':
-                        var path = @$"\\P47ISSHRS01\isshared\Everyone\Devin Kenney\Code\C#\PlayerMap\playersJson\";
+                        var path = Directory.GetCurrentDirectory() +  @"/playersJson/";
                         await jsonUtils.LoadJson($"{path}55bbf82d-8675-4410-9eed-c761c4c28998.json", this);
                         break;
 

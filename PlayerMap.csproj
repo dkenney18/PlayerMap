@@ -11,8 +11,26 @@
 
   <ItemGroup>
     <None Remove="items\" />
+    <None Remove="crafter\" />
+    <None Remove="smelter\" />
+    <None Remove="enums\" />
+    <None Remove="registries\" />
+    <None Remove="entities\" />
+    <None Remove="utilities\" />
+    <None Remove="actions\" />
+    <None Remove="world\" />
+    <None Remove="storage\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="items\" />
+    <Folder Include="crafter\" />
+    <Folder Include="smelter\" />
+    <Folder Include="enums\" />
+    <Folder Include="registries\" />
+    <Folder Include="entities\" />
+    <Folder Include="utilities\" />
+    <Folder Include="actions\" />
+    <Folder Include="world\" />
+    <Folder Include="storage\" />
   </ItemGroup>
 </Project>
